@@ -14,14 +14,7 @@ pip install -r requirements.txt
 
 The datasets used in our experiments are download from the repository of NeurIPS 2022 paper: "Self-supervised Heterogeneous Graph Pre-training based on Structural Clustering": [[paper]](https://arxiv.org/abs/2210.10462) [[code]](https://github.com/kepsail/SHGP). The label rate is fixed at 6\% for all datasets.
 
-We provide the code of dataset processing in 
-```
-./scr/utils/load_data.py
-```
-and also the processed labels when $imbalance \ ratio=0.1$ in 
-```
-./dataset
-```
+We provide the code of dataset processing in `./scr/utils/load_data.py` and also the processed labels for $imbalance \ ratio=0.1$ in `./dataset`.
 
 
 ## Model training
