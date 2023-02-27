@@ -19,7 +19,7 @@ The datasets used in our experiments are download from the repository of [SHGP (
 
 ## Model training
 
-To train the model and execute the SNS:
+To train the model and execute the SNS under `im_ratio=0.1`:
 
 ```bash
 $ cd ./scr
