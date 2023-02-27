@@ -12,7 +12,6 @@ def sp_coo_2_sp_tensor(sp_coo_mat):
     return torch.sparse.FloatTensor(indices, values, shape)
 
 
-
 def train_val_test_split(label_shape, train_percent):
     rand_idx = np.random.permutation(label_shape)
     val_percent = (1.0 - train_percent) / 2
@@ -144,82 +143,13 @@ def load_imdb_3228(args, train_percent):
     return label, ft_dict, adj_dict
 
 
-def load_acm_4025(args, train_percent):
-    data_path = '../data/acm/acm4025.pkl'
-    with open(data_path, 'rb') as in_file:
-        (label, ft_dict, adj_dict) = pickle.load(in_file)
-
-        p_label = label['p'][0]
-
-        path='../data/acm/'
-        file_name = path+'p_label_im_'+str(args.im_ratio)+'.pkl'
-        if os.path.exists(file_name):
-            with open(file_name, "rb+") as f:
-                label = pickle.load(f)
-        else:
-            idx_train_p, idx_val_p, idx_test_p = train_val_test_split_imbalance(args,p_label.shape[0], train_percent, p_label, args.im_ratio)
-            label = {}
-            label['p'] = [p_label, idx_train_p, idx_val_p, idx_test_p]
-            with open(file_name, "wb") as f:
-                pickle.dump(label, f)
 
 
 
-        args.major_num = int(p_label.shape[0] * train_percent / np.unique(p_label).shape[0] /10)*10
-        args.minor_num = int(args.major_num * args.im_ratio)
-
-
-        adj_dict['p']['a'] = adj_dict['p']['a'].to_sparse()
-        adj_dict['p']['l'] = adj_dict['p']['l'].to_sparse()
-
-        adj_dict['a']['p'] = adj_dict['a']['p'].to_sparse()
-        adj_dict['l']['p'] = adj_dict['l']['p'].to_sparse()
-
-    return label, ft_dict, adj_dict
-
-
-def load_dblp_4057(args, train_percent):
-    data_path = '../data/dblp/dblp4057.pkl'
-    with open(data_path, 'rb') as in_file:
-        (label, ft_dict, adj_dict) = pickle.load(in_file)
-        labels = {}
-        for key in label.keys():
-            key_label = label[key][0]
-
-            if key == args.target_type:
-                path='../data/dblp/'
-                file_name = path+'a_label_im_'+str(args.im_ratio)+'.pkl'
-                if os.path.exists(file_name):
-                    with open(file_name, "rb+") as f:
-                        label_a = pickle.load(f)
-                else:
-                    idx_train_a, idx_val_a, idx_test_a = train_val_test_split_imbalance(args,key_label.shape[0], train_percent, key_label, args.im_ratio)
-                    label_a = [key_label, idx_train_a, idx_val_a, idx_test_a]
-                    with open(file_name, "wb") as f:
-                        pickle.dump(label_a, f)
-                labels[key] = label_a
-
-                args.major_num = int(key_label.shape[0] * train_percent / np.unique(key_label).shape[0] /10)*10
-                args.minor_num = int(args.major_num * args.im_ratio)
-
-
-        adj_dict['p']['a'] = adj_dict['p']['a'].to_sparse()
-        adj_dict['p']['c'] = adj_dict['p']['c'].to_sparse()
-        adj_dict['p']['t'] = adj_dict['p']['t'].to_sparse()
-
-        adj_dict['a']['p'] = adj_dict['a']['p'].to_sparse()
-        adj_dict['c']['p'] = adj_dict['c']['p'].to_sparse()
-        adj_dict['t']['p'] = adj_dict['t']['p'].to_sparse()
-
-    return labels, ft_dict, adj_dict
 
 def load_data(args, dataset,train_percent):
     if dataset=="mag":
         label, ft_dict, adj_dict=load_odbmag_4017(args,train_percent)
-    if dataset=="dblp":
-        label, ft_dict, adj_dict=load_dblp_4057(args,train_percent)
-    if dataset=="acm":
-        label, ft_dict, adj_dict=load_acm_4025(args,train_percent)
     if dataset=="imdb":
         label, ft_dict, adj_dict=load_imdb_3228(args,train_percent)
 
