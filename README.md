@@ -14,9 +14,7 @@ pip install -r requirements.txt
 
 ## Data
 
-The datasets used in our experiments are download from the repository of [SHGP (NeurIPS 2022)](https://arxiv.org/abs/2210.10462): [[github]](https://github.com/kepsail/SHGP). The label rate is fixed at 6\% for all datasets.
-
-We provide the code of dataset processing in `./scr/load_data.py`.
+The datasets used in our experiments are download from the repository of [SHGP (NeurIPS 2022)](https://arxiv.org/abs/2210.10462): [[github]](https://github.com/kepsail/SHGP). The label rate is fixed at 6\% for all datasets. The code of dataset processing for imbalanced setting is provided in `./scr/load_data.py`.
 
 
 ## Model training
