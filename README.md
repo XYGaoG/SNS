@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 ## Data
 
-The datasets used in our experiments are download from the repository of [SHGP (NeurIPS 2022)](https://arxiv.org/abs/2210.10462) ([github](https://github.com/kepsail/SHGP)).Please download the dataset and place it in the folder `./data`. The code of dataset processing for imbalanced setting is provided in `./scr/load_data.py`, and use `--im_ratio` to change the imbalance scenario.
+The datasets used in our experiments are download from the repository of [SHGP](https://arxiv.org/abs/2210.10462) ([github](https://github.com/kepsail/SHGP)).Please download the dataset and place it in the folder `./data`. The code of dataset processing for imbalanced setting is provided in `./scr/load_data.py`, and use `--im_ratio` to change the imbalance scenario.
 
 
 ## Model training
