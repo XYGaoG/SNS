@@ -1,7 +1,7 @@
 ## Introduction
 
 This repository is the implementation of CIKM'23 paper: Semantic-aware Node Synthesis for Imbalanced Heterogeneous Information Networks. 
-![SNS](figure.pdf)
+![SNS](figure.jpg)
 
 ## Requirements
 
