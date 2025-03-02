@@ -29,3 +29,4 @@ To train the model and execute the SNS under `im_ratio=0.1`:
 $ cd ./scr
 $ bash ./run.sh
 ```
+For the HGT model, please use the model in [DGL](https://github.com/dmlc/dgl/tree/master/examples/pytorch/hgt) and convert the graphs using `dgl.heterograph`.
